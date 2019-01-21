@@ -1,6 +1,6 @@
 {
-  "name": "ts-import-plugin",
-  "version": "1.5.5",
+  "name": "@invoker/ts-import-plugin",
+  "version": "1.0.0",
   "description": "babel-plugin-import TypeScript version",
   "main": "index.js",
   "typings": "index.d.ts",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Brooooooklyn/ts-import-plugin.git"
+    "url": "git@github.com:hpcplus2/ts-import-plugin.git"
   },
   "keywords": [
     "antd",
@@ -26,7 +26,7 @@
     "index.d.ts",
     "lib/"
   ],
-  "author": "lynweklm@gmail.com",
+  "author": "hpcherry@outlook.com",
   "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.1.7",

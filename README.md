@@ -1,10 +1,6 @@
-[![npm version](https://badge.fury.io/js/ts-import-plugin.svg)](https://www.npmjs.com/package/ts-import-plugin)
-[![CircleCI](https://circleci.com/gh/Brooooooklyn/ts-import-plugin.svg?style=svg)](https://circleci.com/gh/Brooooooklyn/ts-import-plugin)
-[![Coverage Status](https://coveralls.io/repos/github/Brooooooklyn/ts-import-plugin/badge.svg)](https://coveralls.io/github/Brooooooklyn/ts-import-plugin)
+# @invoker/ts-import-plugin
 
-# ts-import-plugin
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/Brooooooklyn/ts-import-plugin.svg)](https://greenkeeper.io/)
+** Forked from [Brooooooklyn/ts-import-plugin](https://github.com/Brooooooklyn/ts-import-plugin) **
 
 Modular import plugin for TypeScript, compatible with antd, antd-mobile and so on.
 
@@ -43,7 +39,7 @@ import 'antd/lib/card/style/index.less'
 
 ```js
 // webpack.config.js
-const tsImportPluginFactory = require('ts-import-plugin')
+const tsImportPluginFactory = require('@invoker/ts-import-plugin')
 
 module.exports = {
   // ...
@@ -81,7 +77,7 @@ module.exports = {
 
 ```js
 // webpack.config.js
-const tsImportPluginFactory = require('ts-import-plugin')
+const tsImportPluginFactory = require('@invoker/ts-import-plugin')
 
 module.exports = {
   // ...
@@ -121,6 +117,12 @@ module.exports = {
 - camel2UnderlineComponentName `boolean`
 
   default `false`
+
+- resolveModules `string`
+
+  default `undefined`
+
+  `important: specified node_modules directory path, Only support NODE_VERSION >= 8.9`
 
 example:
 
@@ -163,7 +165,7 @@ example:
 ## [ant-design](https://github.com/ant-design/ant-design)
 
 ```ts
-const transformerFactory = require('ts-import-plugin')
+const transformerFactory = require('@invoker/ts-import-plugin')
 // with less
 transformerFactory({ style: true })
 // with css

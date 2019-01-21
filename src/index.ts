@@ -81,7 +81,7 @@ function getImportedStructs(node: ts.Node) {
 function createDistAst(struct: ImportedStruct, options: Options) {
   const astNodes: ts.Node[] = []
 
-  const { libraryName } = options
+  const { libraryName, resolveModules } = options
   const _importName = struct.importName
   const importName = options.camel2UnderlineComponentName
     ? camel2Underline(_importName)
@@ -103,7 +103,9 @@ function createDistAst(struct: ImportedStruct, options: Options) {
 
   const importPath = join(libraryName!, libraryDirectory)
   try {
-    require.resolve(importPath)
+    // Only support node version >= v8.9.0
+    // https://nodejs.org/docs/latest-v8.x/api/modules.html#modules_require_resolve_request_options
+    require.resolve(importPath, resolveModules ? { paths: [resolveModules] } : undefined);
     const scriptNode = ts.createImportDeclaration(
       undefined,
       undefined,
@@ -158,6 +160,7 @@ const defaultOptions = {
   libraryName: 'antd',
   libraryDirectory: 'lib',
   style: false,
+  resolveModules: undefined,
   camel2DashComponentName: true,
   transformToDefaultImport: true,
 }
