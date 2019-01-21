@@ -1,4 +1,4 @@
-# @invoker/ts-import-plugin
+# invoker-ts-import-plugin
 
 ** Forked from [Brooooooklyn/ts-import-plugin](https://github.com/Brooooooklyn/ts-import-plugin) **
 
@@ -118,7 +118,7 @@ module.exports = {
 
   default `false`
 
-- resolveModules `string`
+- resolveModule `string`
 
   default `undefined`
 

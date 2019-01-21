@@ -1,5 +1,5 @@
 {
-  "name": "@invoker/ts-import-plugin",
+  "name": "invoker-ts-import-plugin",
   "version": "1.0.0",
   "description": "babel-plugin-import TypeScript version",
   "main": "index.js",

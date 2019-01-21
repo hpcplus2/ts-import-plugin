@@ -8,6 +8,7 @@ export interface Options {
   camel2DashComponentName?: boolean
   camel2UnderlineComponentName?: boolean
   transformToDefaultImport?: boolean
+  resolveModule?: string
 }
 
 export interface ImportedStruct {
@@ -81,13 +82,13 @@ function getImportedStructs(node: ts.Node) {
 function createDistAst(struct: ImportedStruct, options: Options) {
   const astNodes: ts.Node[] = []
 
-  const { libraryName, resolveModules } = options
+  const { libraryName, resolveModule } = options
   const _importName = struct.importName
   const importName = options.camel2UnderlineComponentName
     ? camel2Underline(_importName)
     : options.camel2DashComponentName
-      ? camel2Dash(_importName)
-      : _importName
+    ? camel2Dash(_importName)
+    : _importName
 
   const libraryDirectory =
     typeof options.libraryDirectory === 'function'
@@ -103,9 +104,9 @@ function createDistAst(struct: ImportedStruct, options: Options) {
 
   const importPath = join(libraryName!, libraryDirectory)
   try {
-    // Only support node version >= v8.9.0
+    // only support node version >= v8.9.0
     // https://nodejs.org/docs/latest-v8.x/api/modules.html#modules_require_resolve_request_options
-    require.resolve(importPath, resolveModules ? { paths: [resolveModules] } : undefined);
+    require.resolve(importPath, resolveModule ? { paths: [resolveModule] } : undefined)
     const scriptNode = ts.createImportDeclaration(
       undefined,
       undefined,
@@ -121,8 +122,8 @@ function createDistAst(struct: ImportedStruct, options: Options) {
               ),
             ])
           : options.transformToDefaultImport
-            ? undefined
-            : ts.createNamedImports([ts.createImportSpecifier(undefined, ts.createIdentifier(struct.importName))]),
+          ? undefined
+          : ts.createNamedImports([ts.createImportSpecifier(undefined, ts.createIdentifier(struct.importName))]),
       ),
       ts.createLiteral(importPath),
     )
@@ -160,7 +161,7 @@ const defaultOptions = {
   libraryName: 'antd',
   libraryDirectory: 'lib',
   style: false,
-  resolveModules: undefined,
+  resolveModule: undefined,
   camel2DashComponentName: true,
   transformToDefaultImport: true,
 }
